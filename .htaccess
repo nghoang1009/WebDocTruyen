@@ -1,0 +1,16 @@
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /WebDocTruyen/
+
+    # Direct access to public assets & static files
+    RewriteCond %{REQUEST_URI} ^/WebDocTruyen/public/ [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/WebDocTruyen/init.php [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/WebDocTruyen/database/ [NC]
+    RewriteRule ^ - [L]
+
+    # Send all other requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
